@@ -5,6 +5,7 @@ from PIL import ImageTk
 from tkinter import *
 import rawpy
 import imageio
+import tkinter.messagebox
 
 path1 = "Images/image1.jpg"
 path2 = "Images/image2.jpg"
@@ -19,7 +20,10 @@ def upload_image(e):
 	print(str(path2)[-5:-2])
 
 	if str(path2)[-5:-2] != "ARW":
-		upload_image(e);
+		if tkinter.messagebox.askyesno("Upload Failed","Wrong format image selected, Do you want to upload again ?"):
+			upload_image(e)
+		else:
+			return 
 	convert_raw_to_jpg(path2)
 	img2 = image.open('Images/input.jpg')
 	print(str(scale_w) + " " + str(scale_h))
@@ -29,9 +33,14 @@ def upload_image(e):
 	button.config(text='convert',bg="#ccff99")
 	w2.image = logo2
 
-
-
-
+def convert_image():
+	print(path2)
+	if str(path2)[-5:-2] != "ARW":
+		tkinter.messagebox.showerror("Enhancement Failed","File is not a raw format image")
+		return 	
+	else:
+		
+			 
 
 root = tk.Tk()
 
@@ -80,7 +89,7 @@ button_select = tk.Button(frame3,text='choose a file',fg="red",width=25,height=2
 button_select.bind('<Button>', upload_image)
 button_select.pack(side="left",padx=115)
 
-button = tk.Button(frame4,text='convert',fg="black",bg="#ffc2b3",width=25,height=2,command=quit)
+button = tk.Button(frame4,text='convert',fg="black",bg="#ffc2b3",width=25,height=2,command=convert_image)
 button.pack(side="bottom",pady=30)
 
 root.mainloop()
