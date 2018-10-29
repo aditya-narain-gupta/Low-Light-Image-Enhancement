@@ -46,9 +46,13 @@ frame3.pack(fill=X)
 frame4 = Frame(master=root,height=200)
 frame4.pack(fill=X)
 
-label1 = tk.Label(frame1,text="Original image",fg="red").pack(side = "left",padx=150,pady=50)
+label1 = tk.Label(frame1,text="Original Image",fg="red")
+label1.pack(side = "left",padx=150,pady=50)
+label1.config(font=("Courier", 10))
 
-label2 = tk.Label(frame1,text="Converted image",fg="red").pack(side = "right",padx=150,pady=50)
+label2 = tk.Label(frame1,text="Enhanced Image",fg="red")
+label2.pack(side = "right",padx=150,pady=50)
+label2.config(font=("Courier", 10))
 
 scale_w = 400
 scale_h = 250
